@@ -25,14 +25,24 @@ class App extends Component {
   renderChoice() {
     if (this.state.renderBall) {
       return <div className="ball" style={this.state.ballPosition}></div>;
-    } else
-      return (
-        <button onClick={this.buttonClickHandler}>Click For One Ball</button>
-      );
+    } else return <button onClick={this.buttonClickHandler}>Start</button>;
   }
 
   //bind ArrowRight keydown event
-  componentDidMount() {}
+  componentDidMount() {
+    document.onkeydown = (event) => {
+      event = window.event;
+
+      let right = Number(this.state.ballPosition.left.slice(0, -2)) + 5 + "px";
+      if (event.keyCode === 39) {
+        this.setState({
+          renderBall: true,
+          posi: 0,
+          ballPosition: { left: right }
+        });
+      }
+    };
+  }
 
   render() {
     return <div className="playground">{this.renderChoice()}</div>;
