@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import "./styles.css";
+import "../styles/App.css";
 
 class App extends Component {
   constructor(props) {
@@ -15,19 +15,17 @@ class App extends Component {
 
   //call back function
   buttonClickHandler() {
+    console.log("ball");
     this.setState({
       renderBall: true,
       posi: 0,
-      ballPosition: { left: "0px" }
+      ballPosition: { left: "5px" }
     });
   }
   renderChoice() {
     if (this.state.renderBall) {
       return <div className="ball" style={this.state.ballPosition}></div>;
-    } else
-      return (
-        <button onClick={this.buttonClickHandler}>Click For One Ball</button>
-      );
+    } else return <button onClick={this.buttonClickHandler}>Start</button>;
   }
 
   //bind ArrowRight keydown event
